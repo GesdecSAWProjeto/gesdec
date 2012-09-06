@@ -3,6 +3,7 @@
 	<name>SAW - Esqueleto (v0.1)</name>
 	<comment></comment>
 	<projects>
+		<project>javax.faces</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
