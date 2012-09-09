@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="content">
+	    <h3>Sistema Acadêmico Web</h3>
+	    Bem-vindo, #{request.remoteUser}. Navegue no sistema utilizando os menus acima.
+	    <br />
+	    <sec:authorize ifAnyGranted="ROLE_USUARIO_ADMINISTRADOR">
+	    	<h:outputText value="Caso deseje cadastrar usuários, entre na seção:"/>
+	    	<h:commandLink action="/admin/principal" title="Administrativa" />
+	    </sec:authorize>
+	</ui:define>
+</ui:composition>
+</html>

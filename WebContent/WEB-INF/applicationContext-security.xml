@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	<http>
+		<intercept-url pattern="/admin/**" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/restrito/aluno/**" access="ROLE_USUARIO_ALUNO, ROLE_USUARIO_PROFESSOR, ROLE_USUARIO_COORDENADOR, ROLE_USUARIO_DIRETOR" />
+		<intercept-url pattern="/restrito/professor/**" access="ROLE_USUARIO_PROFESSOR, ROLE_USUARIO_COORDENADOR, ROLE_USUARIO_DIRETOR" />
+		<intercept-url pattern="/restrito/coordenador/**" access="ROLE_USUARIO_COORDENADOR, ROLE_USUARIO_DIRETOR" />
+		<intercept-url pattern="/restrito/diretor/**" access="ROLE_USUARIO_DIRETOR" />
+		<form-login login-page="/publico/login.jsf"
+			always-use-default-target="true"
+			default-target-url="/restrito/aluno/principal.jsf"
+			authentication-failure-url="/publico/login.jsf?login_error=1" />
+		<logout/>
+		<remember-me/>
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="gesdecDataSource"
+				authorities-by-username-query="SELECT u.login, p.perfil
+					FROM usuario u, perfil p WHERE u.id_perfil = p.id_perfil AND u.login = ?"
+				users-by-username-query="SELECT login, senha, ativo FROM usuario WHERE login = ?"/>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
