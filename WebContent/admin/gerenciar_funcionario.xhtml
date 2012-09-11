@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="header">
+	    <h1 class="title ui-widget-header ui-corner-all">Gerenciamento de Funcionários</h1>
+	</ui:define>
+	<ui:define name="content">
+	    <h:form id="dataForm">
+	    	<p:dataTable id="funcionarioTable" var="funcionario" value="#{funcionarioBean.lista}" rowIndexVar="index"
+	    		paginator="true" rows="10" selection="#{funcionarioBean.funcionarioSelecionado}" selectionMode="single" >
+	    		<f:facet name="header">
+	    			Lista de Funcionários
+	    			<p:commandButton id="novoButton" value="Novo" action=""/>
+	    			<p:commandButton id="editarButton" value="Editar" action=""/>
+	    			<p:commandButton id="excluirButton" value="Excluir" action=""/>
+	    		</f:facet>
+	    		<p:column id="nome" headerText="Nome" sortBy="#{funcionario.nome}" filterBy="#{funcionario.nome}">
+	    			#{funcionario.nome}
+	    		</p:column>
+	    		<p:column id="cpf" headerText="CPF" sortBy="#{funcionario.CPF}" filterBy="#{funcionario.CPF}">
+	    			#{funcionario.CPF}
+	    		</p:column>
+	    		<p:column id="matricula" headerText="Matrícula" sortBy="#{funcionario.matricula}" filterBy="#{funcionario.matricula}">
+	    			#{funcionario.matricula}
+	    		</p:column>
+	    	</p:dataTable>
+	    </h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -4,10 +4,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:sec="http://www.springframework.org/security/tags">
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:p="http://primefaces.org/ui">
 	<ui:composition>
 		<sec:authorize ifAnyGranted="ROLE_USUARIO_ALUNO">
-			menu pra fazer.
+			<p:tabMenu>
+				<p:menuitem value="Geral" url="/aluno/principal"/>
+				<p:menuitem value="Aluno" url="#"/>
+				<p:menuitem value="Professor" url="#" rendered="#{sec:areAnyGranted('ROLE_USUARIO_PROFESSOR, ROLE_USUARIO_COORDENADOR, ROLE_USUARIO_DIRETOR')}"/>
+				<p:menuitem value="Coordenador" url="#" rendered="#{sec:areAnyGranted('ROLE_USUARIO_COORDENADOR, ROLE_USUARIO_DIRETOR')}"/>
+				<p:menuitem value="Diretor" url="#" rendered="#{sec:areAnyGranted('ROLE_USUARIO_DIRETOR')}"/>
+				<p:menuitem value="Sair" onclick="document.location='#{request.contextPath}/j_spring_security_logout'"/>
+			</p:tabMenu>
 		</sec:authorize>
 	</ui:composition>
 </html>

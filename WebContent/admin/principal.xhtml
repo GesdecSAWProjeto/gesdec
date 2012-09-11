@@ -4,14 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/modelo.xhtml">
 	<ui:define name="header">
-	    Área Administrativa
+	    <h1>Área Administrativa</h1>
 	</ui:define>
 	<ui:define name="content">
-	    Inserir conteúdo
+	    <p:panel id="panelAdmin" header="Gerenciar">
+	    	<p:commandButton value="Aluno" action="/admin/gerenciar_aluno"/>
+	    	<p:commandButton value="Funcionário" action="/admin/gerenciar_funcionario"/>
+	    	<p:commandButton value="Usuário" action="/admin/gerenciar_usuario"/>
+	    	<p:commandButton value="Perfil" action="/admin/gerenciar_perfil"/>
+	    	<br />
+	    	<h:outputText value="Desejar sair?" />
+	    	<h:outputLink value="javascript:void(0)" onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair"/>
+	    </p:panel>
 	</ui:define>
 </ui:composition>
 </html>

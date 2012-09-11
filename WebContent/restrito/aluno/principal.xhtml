@@ -14,7 +14,7 @@
 	    Bem-vindo, #{request.remoteUser}. Navegue no sistema utilizando os menus acima.
 	    <br />
 	    <sec:authorize ifAnyGranted="ROLE_USUARIO_ADMINISTRADOR">
-	    	<h:outputText value="Caso deseje cadastrar usuários, entre na seção:"/>
+	    	<h:outputText value="Caso deseje gerenciar os cadastros do sistema, entre na seção:"/>
 	    	<h:commandLink action="/admin/principal" title="Administrativa" />
 	    </sec:authorize>
 	</ui:define>

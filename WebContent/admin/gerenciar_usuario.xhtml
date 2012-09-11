@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/modelo.xhtml">
+	<ui:define name="header">
+	    <h1 class="title ui-widget-header ui-corner-all">Gerenciamento de Usuários</h1>
+	</ui:define>
+	<ui:define name="content">
+	    <h:form id="dataForm">
+	    	<p:dataTable id="usuarioTable" var="usuario" value="#{usuarioBean.lista}" rowIndexVar="index"
+	    		paginator="true" rows="10" selection="#{usuarioBean.usuarioSelecionado}" selectionMode="single" >
+	    		<f:facet name="header">
+	    			Lista de Usuários
+	    			<p:commandButton id="novoButton" value="Novo" action=""/>
+	    			<p:commandButton id="editarButton" value="Editar" action=""/>
+	    			<p:commandButton id="excluirButton" value="Excluir" action=""/>
+	    		</f:facet>
+	    		<p:column id="login" headerText="Login" filterBy="#{usuario.login}">
+	    			#{usuario.login}
+	    		</p:column>
+	    		<p:column id="senha" headerText="Senha" filterBy="#{usuario.senha}">
+	    			#{usuario.senha}
+	    		</p:column>
+	    		<p:column id="perfil" headerText="Perfil" sortBy="#{usuario.id_perfil}" filterBy="#{usuario.id_perfil}">
+	    			#{usuario.id_perfil}
+	    		</p:column>
+	    		<p:column id="dt_cadastro" headerText="Data de Cadastro" sortBy="#{usuario.dt_cadastro}" filterBy="#{usuario.dt_cadastro}">
+	    			#{usuario.dt_cadastro}
+	    		</p:column>
+	    	</p:dataTable>
+	    </h:form>
+	</ui:define>
+</ui:composition>
+</html>
